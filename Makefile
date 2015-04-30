@@ -8,7 +8,7 @@ endif
 #DATA_LIST=data/sample.list
 DATA_LIST=$(TMT_ROOT)/personal/mnovak/czeng_coref/data/en/analysed/czeng_0/train/0001/list
 
-UNLABELED_DATA=data/unlabeled.table.gz
+UNLABELED_DATA=data/unlabeled.nonshared.table.gz
 
 extract_table_labeled : data/labeled.table.gz
 extract_table_unlabeled : data/unlabeled.table.gz
