@@ -23,8 +23,8 @@ data/labeled.table.gz $(UNLABELED_DATA) : $(DATA_LIST)
 		My::ExtractAnimacyTable labeled=$(LABELED) to="." substitute='{^.*/([^\/]*)}{data/$(DIR)/$$1.txt}'
 	find data/$(DIR) -name '*.txt' -exec cat {} \; | gzip -c > $@
 
-TRAIN_DATA=data/train.table.gz
-DEV_DATA=data/dev.table.gz
+TRAIN_DATA=data/train.nonshared.table.gz
+DEV_DATA=data/dev.nonshared.table.gz
 EVAL_DATA=data/eval.table.gz
 
 $(TRAIN_DATA) : START=1
