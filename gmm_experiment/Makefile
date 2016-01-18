@@ -14,6 +14,7 @@ data/unlabeled.train.nonshared.table.gz : GMM_PARAMS=$(UNLABELED_GMM_PARAMS)
 data/train.nonshared.table.gz data/unlabeled.train.nonshared.table.gz :
 	python data_gener.py $(LABELED) $(GMM_PARAMS) | gzip -c > $@
 
+VALUES=-100 -50 -10 0 10 50 100 900 950 990 1000 1010 1050 1100
 run :
 	./em.sh 100
-	./word_progress.sh > words
+	./x_progress.sh $(VALUES) > words
