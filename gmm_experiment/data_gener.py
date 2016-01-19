@@ -1,13 +1,16 @@
 import sys
 import numpy as np
 
-def print_line(l, l_true, x, labeled):
+def print_line(l, l_true, x_list, labeled):
     l_str = str(l)
     if labeled == 1:
         loss = 0 if l == l_true else 1
         l_str = l_str + ":" + str(loss)
-    print l_str + " | a=" + str(l-1) + ",x=" + str(int(x))
+    x_str = " ".join( [ "a="+str(l-1)+",x="+str(int(x)) for x in x_list ] )
+    print l_str + " | " + x_str
     
+
+feats_per_inst = 5
 
 labeled = 0
 if len(sys.argv) > 1:
@@ -16,9 +19,11 @@ if len(sys.argv) > 1:
 m1_params = [ 0, 100, 10000 ]
 if len(sys.argv) > 2:
     m1_params = [ int(x) for x in sys.argv[2].split(',') ]
+    m1_params[2] = ( m1_params[2], feats_per_inst )
 m2_params = [ 500, 100, 20000 ]
 if len(sys.argv) > 3:
     m2_params = [ int(x) for x in sys.argv[3].split(',') ]
+    m2_params[2] = ( m2_params[2], feats_per_inst )
 
 m1_data = [ (x, 1) for x in np.random.normal(*m1_params) ]
 m2_data = [ (x, 2) for x in np.random.normal(*m2_params) ]
