@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#words="John Mary boy girl man woman dog cat elephant computer table axe space government reason"
-words="$@"
+words="John Mary boy girl man woman dog cat elephant computer table axe space government reason"
+#words="$@"
 echo -n "	"
 echo $words | sed 's/ /	/g'
 
