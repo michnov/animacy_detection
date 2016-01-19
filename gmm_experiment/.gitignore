@@ -1,5 +1,8 @@
 /data
 /tmp
 /model
-/words
+/exper
+/stats
+/graph.pdf
+/vw.cache
 /em.sh
