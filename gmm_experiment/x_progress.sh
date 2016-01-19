@@ -3,23 +3,19 @@
 mkdir -p tmp/x_progress
 
 #words="John Mary boy girl man woman dog cat elephant computer table axe space government reason"
-words="$@"
-echo -n "	"
-echo $words | sed 's/ /	/g'
+values="$@"
 
-for labeled_file in data/iter*.labeled.train.nonshared.table.gz; do 
-    file_id=`echo $labeled_file | sed 's/^.*iter\([0-9]\+\).*$/\1	/' | perl -pe 'chomp'`
-    echo -n $file_id
-    zcat $labeled_file |
-        $ML_FRAMEWORK_DIR/scripts/discretize_losses.pl | gzip -c > tmp/x_progress/$file_id
-    for word in $words; do
-        all=`zcat tmp/x_progress/$file_id | grep -P "^2.*x=$word(\\s.*)?$" | wc -l`
-        ones=`zcat tmp/x_progress/$file_id | grep -P "^1:0.*x=$word(\\s.*)?$" | wc -l`
-        twos=`zcat tmp/x_progress/$file_id | grep -P "^2:0.*x=$word(\\s.*)?$" | wc -l`
-        echo -ne '\t'
-        echo -n $((ones*100/all))':'$((twos*100/all))
-    done
-    echo
+python data_gener.py -l $values | gzip -c > tmp/x_progress/test.table.gz
+
+echo -n "	"
+echo $values | sed 's/ /	/g'
+
+for model in model/iter*; do 
+    file_id=`echo $model | sed 's/^.*iter\([0-9]\+\).*$/\1/' | perl -pe 'chomp'`
+    echo -en $file_id'\t'
+
+    zcat tmp/x_progress/test.table.gz | vw -t -i $model -r 'tmp/'$file_id'.result.txt' -b 20
+    cat 'tmp/'$file_id'.result.txt' | ./prob_from_results.pl | perl -e 'my @a = <STDIN>; chomp $_ for (@a); print join "\t", @a; print "\n";'
 done
 
 rm -rf tmp/x_progress
