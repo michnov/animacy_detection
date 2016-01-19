@@ -22,7 +22,9 @@ run :
 	#./em.sh 20
 
 stats : run
-	./x_progress.sh $(VALUES) > $@
+	echo "LABELED_GMM_PARAMS=$(LABELED_GMM_PARAMS)" > $@
+	echo "UNLABELED_GMM_PARAMS=$(UNLABELED_GMM_PARAMS)" >> $@
+	./x_progress.sh $(VALUES) >> $@
 
 graph : graph.pdf
 graph.pdf : stats
