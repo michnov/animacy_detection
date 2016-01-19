@@ -20,7 +20,8 @@ data/train.nonshared.table.gz data/unlabeled.train.nonshared.table.gz :
 VALUES=$(shell seq -500 10 2000)
 
 run :
-	#./em.sh 20
+	./em.sh 20
+	touch $@
 
 stats : run
 	echo "LABELED_GMM_PARAMS=$(LABELED_GMM_PARAMS)" > $@
