@@ -1,8 +1,8 @@
 init :
 	ln -s ../all_experiment.low_feat/em.sh
 
-LABELED_GMM_PARAMS=0,10,1000 1000,10,2000
-UNLABELED_GMM_PARAMS=100,10,10000 1100,10,20000
+LABELED_GMM_PARAMS=0,300,1000 1000,300,1000
+UNLABELED_GMM_PARAMS=-300,500,10000 1300,500,10000
 
 tables : data/train.nonshared.table.gz data/unlabeled.train.nonshared.table.gz
 
@@ -20,7 +20,7 @@ data/train.nonshared.table.gz data/unlabeled.train.nonshared.table.gz :
 VALUES=$(shell seq -500 10 2000)
 
 run :
-	./em.sh 20
+	./em.sh 27
 	touch $@
 
 stats : run
@@ -30,7 +30,7 @@ stats : run
 
 graph : graph.pdf
 graph.pdf : stats
-	./anim_prob_graph.py < $<
+	./anim_prob_graph.py 9,18 < $<
 
 clean :
 	rm -rf data/*
