@@ -18,6 +18,7 @@ data/train.nonshared.table.gz data/unlabeled.train.nonshared.table.gz :
 #VALUES2=$(shell seq 910 10 00)
 #VALUES=$(VALUES1) $(VALUESinter) $(VALUES2)
 VALUES=$(shell seq -500 10 2000)
+VALUES_FLAG=-fx $(VALUES)
 
 run :
 	./em.sh 27
@@ -26,7 +27,7 @@ run :
 stats : run
 	echo "LABELED_GMM_PARAMS=$(LABELED_GMM_PARAMS)" > $@
 	echo "UNLABELED_GMM_PARAMS=$(UNLABELED_GMM_PARAMS)" >> $@
-	./x_progress.sh $(VALUES) >> $@
+	./x_progress.sh $(VALUES_FLAG) >> $@
 
 graph : graph.pdf
 graph.pdf : stats

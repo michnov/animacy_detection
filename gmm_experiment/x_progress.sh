@@ -5,10 +5,10 @@ mkdir -p tmp/x_progress
 #words="John Mary boy girl man woman dog cat elephant computer table axe space government reason"
 values="$@"
 
-python data_gener.py -l $values | gzip -c > tmp/x_progress/test.table.gz
+./test_gener.pl $values | gzip -c > tmp/x_progress/test.table.gz
 
 echo -n "	"
-echo $values | sed 's/ /	/g'
+echo $values | perl -e 'my $line = <STDIN>; chomp $line; print join "\t", grep {$_ !~ /^-f/} split /\s+/, $line; print "\n";'
 
 for model in model/iter*; do 
     file_id=`echo $model | sed 's/^.*iter\([0-9]\+\).*$/\1/' | perl -pe 'chomp'`
