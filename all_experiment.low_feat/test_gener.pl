@@ -10,14 +10,10 @@ sub print_instance {
     print "\n";
 }
 
-my $fname = undef;
+my $fname = "";
 foreach my $arg (@ARGV) {
-    if ($arg eq "-f") {
-        $fname = undef;
-        next;
-    }
-    if (!defined $fname) {
-        $fname = $arg;
+    if ($arg =~ /^-f(.*)$/) {
+        $fname = $1;
         next;
     }
     print_instance($fname, $arg);
