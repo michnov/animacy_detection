@@ -1,4 +1,10 @@
 /data
 /model
 /tmp
+/exper
 /words
+/prob_from_results.pl
+/x_progress.sh
+/run
+/stats
+/graph.pdf
