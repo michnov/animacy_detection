@@ -53,6 +53,6 @@ plt.plot(X_range, np.array(Yn)[X_sorted_idx])
 
 plt.xticks(X_range, np.array(X)[X_sorted_idx], rotation=315)
 
-plt.legend(["iter "+str(x) for x in labels], loc='upper left')
+plt.legend(["iter "+str(x) for x in labels], loc='lower right', fontsize='x-small')
 
 plt.savefig('graph.pdf')
