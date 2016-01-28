@@ -51,7 +51,7 @@ for i in Yi:
     plt.plot(X_range, np.array(i)[X_sorted_idx])
 plt.plot(X_range, np.array(Yn)[X_sorted_idx])
 
-plt.xticks(X_range, np.array(X)[X_sorted_idx], rotation=315)
+plt.xticks(X_range, np.array(X)[X_sorted_idx], rotation=315, horizontalalignment='left', fontsize='4')
 
 plt.legend(["iter "+str(x) for x in labels], loc='lower right', fontsize='x-small')
 
