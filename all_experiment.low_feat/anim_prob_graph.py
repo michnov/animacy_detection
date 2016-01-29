@@ -38,7 +38,8 @@ for line in sys.stdin:
 labels.append(Yn_iter)
 
 X_range = range(len(X))
-X_sorted_idx = np.argsort(Yn)
+X_sorted_idx = np.argsort([float(x) for x in Yn])
+print Yn
 
 colormap = plt.cm.RdYlBu
 colorcodes = [colormap(i) for i in np.linspace(0, 0.9, len(Yi)+2)]
