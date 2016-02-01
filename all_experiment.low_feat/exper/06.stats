@@ -1,3 +1,6 @@
+# weights on verbs
+# training data contain verbs only, no kid_lemma=#PersPron feature
+# trained using the training set for the first iteration model and both the training and the unlabeled set for the rest of iterations
 	be_ACT	be_PAT	use_PAT	give_PAT	take_CPHR	take_PAT	keep_ACT	leave_ACT	come_PAT	stand_ACT	occur_TPAR	forward_ADDR	fall_REG	sink_ACT	wonder_TWHEN	whisper_ADDR	visualize_PAT	walk_MANN	destroy_MEANS	ezeken_ACT	forward_COND	lift_off_DIR3
 001	85.53	92.52	98.32	92.94	20.24	65.34	6.18	1.38	16.90	2.05	50.00	22.07	50.50	10.33	50.00	0.03	77.66	50.00	50.00	50.00	50.00	50.00
 002	100.00	100.00	100.00	100.00	0.00	99.98	0.02	0.02	0.01	0.03	50.00	0.20	69.93	0.43	50.00	0.87	93.33	50.00	50.00	50.00	50.00	50.00
