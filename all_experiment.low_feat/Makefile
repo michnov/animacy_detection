@@ -6,7 +6,7 @@ VALUES=be_ACT be_PAT use_PAT give_PAT take_CPHR take_PAT keep_ACT leave_ACT come
 VALUES_FLAG=-fverb_lemma_functor $(VALUES)
 
 run :
-	./em.sh 100
+	./em.sh 50
 	touch $@
 
 stats : run
